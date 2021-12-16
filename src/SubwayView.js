@@ -1,3 +1,5 @@
+import { ERR_MSG } from './data/constants.js';
+
 export default class SubwayView {
   constructor() {
     this.appEl = document.getElementById('app');
@@ -36,5 +38,9 @@ export default class SubwayView {
         <button id="search-button">길 찾기</button>
       </div>
     `;
+  }
+
+  alertErr(errNum) {
+    alert(ERR_MSG[errNum]);
   }
 }
