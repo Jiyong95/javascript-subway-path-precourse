@@ -32,16 +32,22 @@ export default class UserInput {
     return result;
   }
 
+  isSame() {
+    return this.departure === this.arrival;
+  }
+
   isValidInput() {
     if (
       !this.isValidLength(this.departure) &&
       !this.isValidLength(this.arrival)
     ) {
-      return ERR_NUM.departure;
+      return ERR_NUM.length;
     }
-
     if (!this.isInName(this.departure) && !this.isInName(this.arrival)) {
-      return ERR_NUM.arrival;
+      return ERR_NUM.inStation;
+    }
+    if (this.isSame()) {
+      return ERR_NUM.same;
     }
 
     return 1;
