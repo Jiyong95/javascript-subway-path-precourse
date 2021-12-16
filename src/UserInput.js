@@ -1,4 +1,5 @@
 import { ERR_NUM, SUBWAY_RULES } from './data/constants';
+import { STATIONS } from './data/subwayData';
 
 export default class UserInput {
   constructor() {
@@ -20,11 +21,26 @@ export default class UserInput {
     return name.length;
   }
 
+  isInName(inputName) {
+    let result = false;
+    STATIONS.forEach(({ name }) => {
+      if (name === inputName) {
+        result = true;
+      }
+    });
+
+    return result;
+  }
+
   isValidInput() {
-    if (!this.isValidLength(this.departure)) {
+    if (
+      !this.isValidLength(this.departure) &&
+      !this.isValidLength(this.arrival)
+    ) {
       return ERR_NUM.departure;
     }
-    if (!this.isValidLength(this.arrival)) {
+
+    if (!this.isInName(this.departure) && !this.isInName(this.arrival)) {
       return ERR_NUM.arrival;
     }
 
